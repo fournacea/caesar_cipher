@@ -1,7 +1,8 @@
 from art import logo
 
 
-# Create list of alphabet charecters to later produce an encoded/decoded copy of entered string 
+# Create list of alphabet charecters to later produce 
+# an encoded/decoded copy of entered string 
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
              'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 
              'z','a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
@@ -13,7 +14,7 @@ print(logo)
 # Gather required information from user
 
 #Cipher direction
-direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
+direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
 
 # User text to be encoded or decoded
 text = input("Type your message:\n").lower()
@@ -29,11 +30,15 @@ def caesar(cipher_direction, entered_text, shift_amount):
     if cipher_direction == "decode":
         shift_amount *= -1
     
-    # Iterate over each letter, shift letter in alpha list, return converted letter, add to string buffer
-    for letter in entered_text:
-        postion = alphabet.index(letter)
-        new_position = postion + shift_amount
-        text_buffer += alphabet[new_position]
+    # Iterate over each letter, shift letter in alpha list, 
+    # return converted letter, add to string buffer
+    for char in entered_text:
+        if char in alphabet:
+            position = alphabet.index(char)
+            new_position = position + shift_amount
+            text_buffer += alphabet[new_position]
+        else:
+            text_buffer += char
     
     # Print the result
     print(f"The {cipher_direction}d string is: {text_buffer}")
